@@ -1,0 +1,262 @@
+{% raw %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="referrer" content="never">
+    <script src="/static/script/mustache.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>地球上没有新鲜事</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/aui.css"/>
+    <style type="text/css">
+        #demo {
+            width: 4rem;
+            height: 4rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -2rem;
+            margin-top: -2rem;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            line-height: 4rem;
+            text-align: center;
+            color: #212121;
+            font-size: 1.2rem;
+        }
+
+        .user-info {
+            background-color: #ffffff;
+            padding: 0.75rem 0;
+        }
+
+        img.avatar {
+            display: block;
+            margin: 0 auto;
+            width: 20%;
+        }
+
+        .aui-list .aui-list-header {
+            background-color: #ffffff;
+            line-height: 1.2rem;
+        }
+
+        .aui-list .aui-list-item {
+            background-color: #f8f6ef;
+        }
+
+        .critics {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body onload="get()">
+
+<div id="index" style="padding-bottom:60px">
+    <div id="searchbar">
+        <script>
+            $("#searchbar").load("/static/searchbar.html");
+        </script>
+    </div>
+    <div id="doubanpage">
+        <script>
+            $("#doubanpage").load("/static/douban.html");
+        </script>
+    </div>
+    <div class="aui-bg-grey" style="height: 0.3rem;">
+
+    </div>
+    <div id="zhihupage">
+        <script>
+            $("#zhihupage").load("/static/zhihu.html");
+        </script>
+    </div>
+
+</div>
+
+<div id="detail-box" style="display: None">
+    <header class="aui-bar aui-bar-nav">
+        <a class="aui-pull-left aui-btn" onclick="d_back()">
+            <span class="aui-iconfont aui-icon-left"></span>返回
+        </a>
+        <div class="aui-title"> 日报</div>
+        <a class="aui-pull-right aui-btn aui-btn-outlined" onclick="collect()">
+            <span class="aui-iconfont aui-icon-star"></span>收藏
+        </a>
+    </header>
+    <div id="detail" style="padding-bottom: 70px;margin: 10px 10px 10px 0px">
+
+
+    </div>
+</div>
+<div id="collect" style="display: None"></div>
+
+<div id="profile" style="display: None">
+    <header class="aui-bar aui-bar-nav">个人资料
+    </header>
+
+    <div id="profile-show"></div>
+    <div class="aui-bg-grey" style="height: 0.3rem;">
+    </div>
+    <section class="aui-content">
+        <ul class="aui-list aui-list-noborder">
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <i class="aui-iconfont aui-icon-my aui-text-danger"></i>
+                    <div class="aui-list-item-inner  aui-margin-l-10">
+                        个人中心
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <i class="aui-iconfont aui-icon-star aui-text-danger aui-margin-b-5"></i>
+                    <div class="aui-list-item-inner  aui-margin-l-10">
+                        我的关注
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title" id="label-box">最近关注的主题：
+                        <script id="labels" type="x-tmpl-mustache">
+                            {{#content}}
+                            <a class="aui-label aui-label-primary">{{.}}</a>
+                            {{/content}}
+
+
+
+                        </script>
+                    </div>
+
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <i class="aui-iconfont aui-icon-mobile aui-text-indigo aui-margin-b-5"></i>
+                    <div class="aui-list-item-inner aui-margin-l-10">
+                        我的联系人
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <i class="aui-iconfont aui-icon-date aui-text-primary aui-margin-b-5"></i>
+                    <div class="aui-list-item-inner aui-margin-l-10">
+                        最近浏览
+                    </div>
+                </div>
+            </li>
+            <div class="aui-bg-grey" style="height: 0.3rem;">
+
+            </div>
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <i class="aui-iconfont aui-icon-close aui-text-danger aui-margin-b-5"></i>
+                    <div class="aui-list-item-inner aui-margin-l-10">
+                        <span><a href="/logout">退出登录</a></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="aui-hr"></div>
+        <section>
+
+</div>
+
+<script id="collect_tmp" type="x-tmpl-mustache">
+    <header class="aui-bar aui-bar-nav">
+        <div class="aui-title"> 我的收藏</div>
+    </header>
+<ul class="aui-list aui-list-in">
+    {{#items}}
+        <li class="aui-list-item" value="{{id}} "onclick="getdetail(this.value)">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18">{{title}}</div>
+                    </div>
+                </div>
+                <div class="aui-list-item-media">
+                    <img src="{{image}}">
+                </div>
+            </div>
+        </li>
+    {{/items}}
+</ul>
+
+
+
+
+</script>
+
+<script id="userinfo" type="x-tmpl-mustache">
+    <div class="aui-card-list-content">
+            <ul class="aui-list aui-media-list">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-media">
+                            <img src="/static/image/liulangnan.png" class="aui-img-round aui-list-img-sm">
+                        </div>
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-text">
+                                <div class="aui-list-item-title aui-font-size-14">{{nickname}}</div>
+                                <div class="aui-list-item-right">08:00</div>
+                            </div>
+                            <div class="aui-list-item-text">
+                                ID:{{user_id}}
+                            </div>
+                            <div class="aui-row aui-margin-t-15">
+                				<span class="aui-text-danger aui-margin-r-5">签名：</span>{{bio}}
+        					</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+
+</script>
+
+</div>
+
+<div id="message" style="display:None">
+    <script>
+        $("#message").load("/static/message.html")
+    </script>
+</div>
+
+<footer class="aui-bar aui-bar-tab" id="footer">
+    <div class="aui-bar-tab-item aui-active" tapmode>
+        <i class="aui-iconfont aui-icon-home"></i>
+        <div class="aui-bar-tab-label">首页</div>
+    </div>
+    <div class="aui-bar-tab-item" tapmode>
+        <i class="aui-iconfont aui-icon-star"></i>
+        <div class="aui-bar-tab-label">收藏</div>
+    </div>
+    <div class="aui-bar-tab-item" tapmode>
+        <div class="aui-badge">99</div>
+        <i class="aui-iconfont aui-icon-paper"></i>
+        <div class="aui-bar-tab-label">消息</div>
+    </div>
+    <div class="aui-bar-tab-item" tapmode>
+        <div class="aui-dot"></div>
+        <i class="aui-iconfont aui-icon-my"></i>
+        <div class="aui-bar-tab-label">我的</div>
+    </div>
+</footer>
+<script type="text/javascript" src="/static/script/api.js"></script>
+<script type="text/javascript" src="/static/script/aui-tab.js"></script>
+<script src="/static/script/fetchdata.js"></script>
+</body>
+</html>
+{% endraw %}

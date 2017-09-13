@@ -1,0 +1,79 @@
+<span id="douban-box">
+  </span>
+
+<script id="mv-tmp" type="x-tmpl-mustache">
+
+<li class="aui-list-item">
+    <div class="aui-card-list-header aui-border-b">
+        <div>{{ type }}:{{ name }}</div>
+</div>
+    </div>
+      <div class="aui-card-list aui-margin-b-5">
+          <div class="aui-card-list-content-padded">
+              <img src="{{ img }}">
+          </div>
+          <li class="aui-list-item aui-padded-l-10" >
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18">简介:{{ summary }}</div>
+                    </div>
+                    <div class="aui-info aui-padded-b-0">
+                        <div class="aui-info-item aui-font-size-12">
+                            <i class="aui-iconfont aui-icon-star aui-text-warning"></i>
+                            <span class="aui-margin-l-5">豆瓣评分:{{ rating }}</span>
+
+                        </div>
+                        <div>
+                            <i class="aui-iconfont aui-icon-date aui-text-warning"></i>
+                            <span class="aui-margin-l-5 aui-margin-r-10">日期: {{ year }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+      </div>
+<hr/>
+  </li>
+
+
+</script>
+
+<script>
+    //获取首页展示
+    function get() {
+        var url = "/data"
+        var request = new XMLHttpRequest()
+        request.open("GET", url)
+        request.send()
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                var rs = request.responseText
+                story_list = JSON.parse(rs)
+                box = {items: story_list}
+                var tmp = document.getElementById("tmp").innerHTML
+                output = Mustache.render(tmp, box);
+                var list = document.getElementById("content")
+                list.innerHTML = output
+                get_item_by_similaruser()
+            }
+        }
+        var douban = "/test/mv"
+        var r2 = new XMLHttpRequest()
+        r2.open("GET", douban)
+        r2.send()
+        r2.onreadystatechange = function () {
+            if (r2.readyState == 4 && r2.status == 200) {
+                var rs = r2.responseText
+                var mv = JSON.parse(rs)
+                mv.content['type'] = mv.type
+                //mv.content['summary']=mv.content.summary.slice(0,30)
+                var tmp = document.getElementById("mv-tmp").innerHTML
+                output = Mustache.render(tmp, mv.content);
+                var db = document.getElementById("douban-box")
+                db.innerHTML = output
+            }
+        }
+    }
+</script>

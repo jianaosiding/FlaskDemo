@@ -1,0 +1,48 @@
+<ul class="aui-list aui-media-list" id="content-box">
+<span id="similaruser">
+ </span>
+ <script id="sm_tmp" type="x-tmpl-mustache">
+     <li class="aui-list-item" value="{{id}} "onclick="getdetail(this.value)">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18">{{title}}</div>
+                    </div>
+                    <div class="aui-info aui-padded-b-0">
+                        <div class="aui-info-item aui-font-size-12">
+                            <img src="/static/image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">[智能推荐] 来自<a>{{name}}</a>的收藏夹</span>
+                        </div>
+                        <div class="aui-info-item aui-font-size-12">{{date}}</div>
+                    </div>
+                </div>
+                <div class="aui-list-item-media">
+                    <img src="{{image}}">
+                </div>
+            </div>
+        </li>
+     </script>
+<span id="content"></span>
+<script id="tmp" type="x-tmpl-mustache">
+        {{#items}}
+        <li class="aui-list-item" value="{{id}} "onclick="getdetail(this.value)">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18">{{title}}</div>
+                    </div>
+                    <div class="aui-info aui-padded-b-0">
+                        <div class="aui-info-item aui-font-size-12">
+                            <img src="/static/image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">知乎日报</span>
+                        </div>
+                        <div class="aui-info-item aui-font-size-12">{{date}}</div>
+                    </div>
+                </div>
+                <div class="aui-list-item-media">
+                    <img src="{{image}}">
+                </div>
+            </div>
+        </li>
+        {{/items}}
+</script>
+
+</ul>

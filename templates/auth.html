@@ -1,0 +1,206 @@
+{% raw %}
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/aui.css" />
+
+</head>
+<body>
+<div class="aui-bar aui-bar-btn aui-bar-btn-full" id="tab">
+    <div class="aui-bar-btn-item aui-active">登录</div>
+
+    <div class="aui-bar-btn-item ">注册</div>
+</div>
+    <div class="aui-content aui-margin-b-15" id="sign-up" style="display:None">
+        <form action="/signup" method="get">
+
+        <ul class="aui-list aui-form-list">
+
+            <li class="aui-list-header">注册</li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        用户名
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" placeholder="Name" name="username">
+                    </div>
+                </div>
+            </li>
+                  <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        昵称
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" placeholder="起个霸气的称号吧" name="nickname">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        密码
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="password" placeholder="Password" name="password">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        年龄
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="number" placeholder="20" name="age">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        性别
+                    </div>
+                    <div class="aui-list-item-input">
+                        <label><input class="aui-radio" type="radio" name="gender" value="1" checked> Male</label>
+                        <label><input class="aui-radio" type="radio" name="gender" value="0"> Female</label>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        城市
+                    </div>
+                    <div class="aui-list-item-input">
+                        <select>
+                            <option>北京</option>
+                            <option>上海</option>
+                            <option>郑州</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        自我介绍
+                    </div>
+                    <div class="aui-list-item-input">
+                        <textarea placeholder="有人的地方就有江湖！"  name="bio"></textarea>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                    <input class="aui-btn aui-btn-info aui-margin-r-5" type="submit">
+
+                    </input>
+                    <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                </div>
+            </li>
+        </ul>
+        </form>
+    </div>
+    <div class="aui-content aui-margin-b-15" id="log-in" style="display:block">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-header">登录</li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-mobile"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" placeholder="username" id="uname">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-lock"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="password" placeholder="password" id="pwd">
+                    </div>
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-display"></i>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                    <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="login()">登录</div>
+                    <div class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
+                </div>
+            </li>
+        </ul>
+
+
+    </div>
+
+</body>
+<script type="text/javascript" src="/static/script/api.js" ></script>
+<script type="text/javascript" src="/static/script/aui-range.js" ></script>
+<script type="text/javascript" src="/static/script/aui-tab.js" ></script>
+
+<script type="text/javascript">
+    var log=document.getElementById("log-in");
+    var sign=document.getElementById("sign-up");
+
+    apiready = function(){
+        api.parseTapmode();
+    };
+    var bar = document.querySelectorAll(".aui-bar-btn");
+    if(bar){
+        for(var i=0; i<bar.length;i++){
+            var d = bar[i];
+            var tab = new auiTab({
+                element:bar[i],
+                repeatClick:false
+            },function(ret){
+                if(ret.index==1){
+                    sign.setAttribute("style","display:None");
+                    log.setAttribute("style","display:Block");
+                }
+                if(ret.index==2)
+                {
+                    log.setAttribute("style","display:None");
+                    sign.setAttribute("style","display:Block");
+                }
+                console.log(ret);
+            });
+        }
+    }
+function login(){
+  var uname=document.getElementById("uname");
+  var pwd=document.getElementById("pwd");
+  var url="/login"
+  var content={'username':uname.value,'password':pwd.value}
+  var json=JSON.stringify(content)
+  var request=new XMLHttpRequest()
+  request.open("Post",url)
+  request.setRequestHeader("Content-Type","application/json")
+  request.send(json)
+  request.onreadystatechange=function (){
+      if (request.readyState==4 && request.status==200){
+          var raw=request.responseText
+          var user=JSON.parse(raw)
+          if(user.status==1){
+            //alert("登录成功")
+            self.location='/'
+          }else{
+            //alert("登录失败")
+          }
+      }}
+}
+
+</script>
+</html>
+{% endraw %}
