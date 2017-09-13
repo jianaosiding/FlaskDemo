@@ -1,9 +1,0 @@
-所有请求使用
-{
-status:1
-content:失败时返回{
-code:错误代码
-message:错误描述
-}
-}
-结构
